@@ -3,7 +3,7 @@ const colors = require("colors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
-
+const path = reuquire("path");
 //dotenv config
 dotenv.config();
 
@@ -31,6 +31,12 @@ app.use("/api/v1/user", require("./routes/userRoutes"));
 app.use("/api/v1/admin", require("./routes/adminRoutes"));
 //DOCTOR ROUTER--
 app.use("/api/v1/doctor", require("./routes/doctorRoutes"));
+
+//static files
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 const port = process.env.PORT || 8080;
 //listen port
