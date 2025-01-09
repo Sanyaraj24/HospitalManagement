@@ -23,6 +23,7 @@ app.use(morgan("dev"));
     message: "server running",
   });
 });*/
+//app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 //routes--
 app.use("/api/v1/user", require("./routes/userRoutes"));
